@@ -1,15 +1,38 @@
 {
   "name": "text-editor-electron",
+  "productName": "Editron",
   "version": "1.0.0",
-  "description": "",
+  "description": "Bloco de notas com personalização de temas feito em electronJS",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "build": {
+    "appId": "Editron",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "Editron-uninstaller",
+      "license": "license.md",
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Pedro Marques"
+  },
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "electron-builder": "^23.0.3",
     "electron": "^18.0.4"
   }
 }

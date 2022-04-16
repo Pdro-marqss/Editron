@@ -14,19 +14,29 @@ body {
     overflow: hidden;
 }
 
+body {
+    background: rgba(0, 0, 0, 0.2) url(../../images/dog.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: darken;
+}
+
 
 #text {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 
-    background-color: #3e3e3e;
-    color: #eee;
+    background-color: transparent;
+    color: white;
 
-    font-size: 18px;
+    font-size: 19px;
 
-    padding: 5px;
+    padding: 8px;
+
+    resize: none;
 }
 
 #text:focus {
-    outline: none;
+    outline-color: #3e3e3e;
 }

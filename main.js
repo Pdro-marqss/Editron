@@ -9,11 +9,15 @@ async function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
+        minWidth: 450,
+        minHeight: 400,
         webPreferences: {
             contextIsolation: false,
-            nodeIntegration: true
+            nodeIntegration: true,
+            devTools: false
         }
     });
+
 
     await mainWindow.loadFile('src/pages/editor/index.html');
 
@@ -25,14 +29,14 @@ async function createWindow() {
     ipcMain.on('update-content', function (event, data) {
         file.content = data;
     });
+
 }
-
-
 
 //FUNÇOES DO APP
 
 //Arquivo
 var file = {};
+var images = [];
 
 //Criar novo arquivo
 function createNewFile() {
@@ -126,6 +130,23 @@ async function openFile() {
 }
 
 
+//BACKGROUND
+function BackgroundChanger(index) {
+    images = [
+        'url(../../images/gragas.jpg)',
+        'url(../../images/gragas2.jpg)',
+        'url(../../images/ez1.jpg)',
+        'url(../../images/ez2.jpg)',
+        'url(../../images/lee.jpg)',
+        'url(../../images/dog.jpg)',
+    ]
+    // console.log('aqui: ' + images)
+
+    mainWindow.webContents.send('set-images', images, index);
+}
+
+
+
 //TEMPLATE MENU
 const templateMenu = [
     {
@@ -204,6 +225,62 @@ const templateMenu = [
             }
         ]
     },
+    {
+        label: 'Temas',
+        submenu: [
+            {
+                label: 'Gragas 1',
+                click() {
+                    BackgroundChanger([0]);
+                    console.log('gragas1');
+                }
+            },
+            {
+                label: 'Gragas 2',
+                click() {
+                    BackgroundChanger([1]);
+                    console.log('gragas2');
+                }
+            },
+            {
+                type: 'separator'
+            },
+            {
+                label: 'Ezreal 1',
+                click() {
+                    BackgroundChanger([2]);
+                    console.log('gragas2');
+                }
+            },
+            {
+                label: 'Ezreal 2',
+                click() {
+                    BackgroundChanger([3]);
+                    console.log('gragas2');
+                }
+            },
+            {
+                type: 'separator'
+            },
+            {
+                label: 'Lee Sin',
+                click() {
+                    BackgroundChanger([4]);
+                    console.log('gragas2');
+                }
+            },
+            {
+                type: 'separator'
+            },
+            {
+                label: 'Dog',
+                click() {
+                    BackgroundChanger([5]);
+                    console.log('gragas2');
+                }
+            }
+        ]
+    }
 ];
 
 
